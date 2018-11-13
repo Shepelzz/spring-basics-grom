@@ -9,10 +9,10 @@
 
     <context:component-scan base-package="com"/>
 
-    <bean id="orderService" class="com.OrderService">
+    <bean id="orderService" class="com.lesson2.OrderService">
         <!--<constructor-arg name="" value=""/>        -->
     </bean>
-    <bean id="orderDAO" class="com.OrderDAO">
+    <bean id="orderDAO" class="com.lesson2.OrderDAO">
         <!--<constructor-arg name="" value=""/>        -->
     </bean>
 
