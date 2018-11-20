@@ -70,29 +70,4 @@ public class AppConfig implements WebMvcConfigurer {
         return new Route("78", new ArrayList<>(Arrays.asList(step1(), step2(), step3())));
     }
 
-    //lesson 3 hw 3_1
-//    @Bean
-//    public StorageDAO storageDAO(){
-//        return new StorageDAOImpl();
-//    }
-//
-//    @Bean
-//    public FileDAO fileDAO(StorageDAO storageDAO){
-//        return new FileDAOImpl(storageDAO);
-//    }
-//
-//    @Bean
-//    public com.lesson3.homework3_1.service.Service service(FileDAO fileDAO, StorageDAO storageDAO){
-//        return new ServiceImpl(fileDAO, storageDAO);
-//    }
-
-//    @Bean
-//    public Controller Controller(com.lesson3.homework3_1.service.Service service){
-//        return new Controller(service);
-//    }
-//
-//    @Bean
-//    public Application application(Controller controller, FileDAO fileDAO, StorageDAO storageDAO){
-//        return new Application(controller, storageDAO, fileDAO);
-//    }
 }
