@@ -1,0 +1,107 @@
+    <bean id="serviceFrom" class="com.model.Service">
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="name" value="A"/>
+        <constructor-arg name="paramsToCall">
+            <list>
+                <value>param1</value>
+                <value>param2</value>
+            </list>
+        </constructor-arg>
+    </bean>
+    <bean id="serviceTo" class="com.model.Service">
+        <constructor-arg name="id" value="2"/>
+        <constructor-arg name="name" value="B"/>
+        <constructor-arg name="paramsToCall">
+            <list>
+                <value>param3</value>
+                <value>param4</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="step1" class="com.model.Step">
+        <constructor-arg name="id" value="12"/>
+        <constructor-arg name="serviceFrom" ref="serviceFrom"/>
+        <constructor-arg name="serviceTo" ref="serviceTo"/>
+        <constructor-arg name="paramsServiceFrom">
+            <map>
+                <entry key-ref="serviceFrom" >
+                    <list>
+                        <value>param1</value>
+                        <value>param2</value>
+                    </list>
+                </entry>
+            </map>
+        </constructor-arg>
+        <constructor-arg name="paramsServiceTo">
+            <map>
+                <entry key-ref="serviceTo" >
+                    <list>
+                        <value>param3</value>
+                        <value>param4</value>
+                    </list>
+                </entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="step2" class="com.model.Step">
+        <constructor-arg name="id" value="13"/>
+        <constructor-arg name="serviceFrom" ref="serviceFrom"/>
+        <constructor-arg name="serviceTo" ref="serviceTo"/>
+        <constructor-arg name="paramsServiceFrom">
+            <map>
+                <entry key-ref="serviceFrom" >
+                    <list>
+                        <value>param1</value>
+                        <value>param2</value>
+                    </list>
+                </entry>
+            </map>
+        </constructor-arg>
+        <constructor-arg name="paramsServiceTo">
+            <map>
+                <entry key-ref="serviceTo" >
+                    <list>
+                        <value>param3</value>
+                        <value>param4</value>
+                    </list>
+                </entry>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean id="step3" class="com.model.Step">
+        <constructor-arg name="id" value="14"/>
+        <constructor-arg name="serviceFrom" ref="serviceFrom"/>
+        <constructor-arg name="serviceTo" ref="serviceTo"/>
+        <constructor-arg name="paramsServiceFrom">
+            <map>
+                <entry key-ref="serviceFrom" >
+                    <list>
+                        <value>param1</value>
+                        <value>param2</value>
+                    </list>
+                </entry>
+            </map>
+        </constructor-arg>
+        <constructor-arg name="paramsServiceTo">
+            <map>
+                <entry key-ref="serviceTo" >
+                    <list>
+                        <value>param3</value>
+                        <value>param4</value>
+                    </list>
+                </entry>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="route" class="com.model.Route">
+        <constructor-arg name="id" value="78"/>
+        <constructor-arg name="steps">
+            <list>
+                <ref bean="step1"/>
+                <ref bean="step2"/>
+                <ref bean="step3"/>
+            </list>
+        </constructor-arg>
+    </bean>
