@@ -1,6 +1,6 @@
 package com.lesson3.homework3_1;
 
-import com.lesson3.homework3_1.controller.Controller;
+import com.lesson3.homework3_1.controller.Hw3_Controller;
 import com.lesson3.homework3_1.dao.FileDAO;
 import com.lesson3.homework3_1.dao.StorageDAO;
 import com.lesson3.homework3_1.model.File;
@@ -16,8 +16,8 @@ import javax.annotation.PostConstruct;
 @SpringBootApplication
 public class Application {
 
-    private static Controller sController;
-    private Controller controller;
+    private static Hw3_Controller sController;
+    private Hw3_Controller controller;
 
     private static StorageDAO sStorageDAO;
     private StorageDAO storageDAO;
@@ -25,7 +25,7 @@ public class Application {
     private FileDAO fileDAO;
 
     @Autowired
-    public Application(Controller controller, StorageDAO storageDAO, FileDAO fileDAO) {
+    public Application(Hw3_Controller controller, StorageDAO storageDAO, FileDAO fileDAO) {
         this.controller = controller;
         this.storageDAO = storageDAO;
         this.fileDAO = fileDAO;

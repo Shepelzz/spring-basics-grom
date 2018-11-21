@@ -1,8 +1,8 @@
 package com.lesson2.homework2_2.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lesson2.homework2_2.model.Item;
-import com.lesson2.homework2_2.service.ItemService;
+import com.lesson2.homework2_2.model.L2hw2_Item;
+import com.lesson2.homework2_2.service.L2Hw2_ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +14,12 @@ import java.io.InputStream;
 
 
 @Controller
-public class ItemController {
+public class L2hw2_ItemController {
 
-    private ItemService itemService;
+    private L2Hw2_ItemService itemService;
 
     @Autowired
-    public ItemController(ItemService itemService) {
+    public L2hw2_ItemController(L2Hw2_ItemService itemService) {
         this.itemService = itemService;
     }
 
@@ -33,7 +33,7 @@ public class ItemController {
     public @ResponseBody
     String save(InputStream dataStream) {
         try {
-            return "Item saved with id: " + itemService.save(new ObjectMapper().readValue(dataStream, Item.class)).getId();
+            return "Item saved with id: " + itemService.save(new ObjectMapper().readValue(dataStream, L2hw2_Item.class)).getId();
         }catch (Exception e){
             return e.getMessage();
         }
@@ -43,7 +43,7 @@ public class ItemController {
     public @ResponseBody
     String update(InputStream dataStream) {
         try {
-            return "Item with id: "+itemService.update(new ObjectMapper().readValue(dataStream, Item.class)).getId()+" was updated";
+            return "Item with id: "+itemService.update(new ObjectMapper().readValue(dataStream, L2hw2_Item.class)).getId()+" was updated";
         }catch (Exception e){
             return e.getMessage();
         }

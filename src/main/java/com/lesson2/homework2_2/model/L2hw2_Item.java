@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "ITEM")
-public class Item {
+public class L2hw2_Item {
     @Id
     @SequenceGenerator(name = "ITEM_SEQ", sequenceName = "ITEM_PK_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ITEM_SEQ")
@@ -76,7 +76,7 @@ public class Item {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
+        L2hw2_Item item = (L2hw2_Item) o;
         return Objects.equals(name, item.name);
     }
 

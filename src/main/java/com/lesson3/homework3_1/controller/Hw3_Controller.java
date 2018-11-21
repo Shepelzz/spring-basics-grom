@@ -7,11 +7,11 @@ import com.lesson3.homework3_1.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @org.springframework.stereotype.Controller
-public class Controller {
+public class Hw3_Controller {
     private Service service;
 
     @Autowired
-    public Controller(Service service) {
+    public Hw3_Controller(Service service) {
         this.service = service;
     }
 

@@ -2,7 +2,7 @@ package com.lesson2.homework2_2.dao;
 
 import com.lesson2.homework2_2.exception.BadRequestException;
 import com.lesson2.homework2_2.exception.InternalServerError;
-import com.lesson2.homework2_2.model.Item;
+import com.lesson2.homework2_2.model.L2hw2_Item;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,12 +13,12 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.NoResultException;
 
 @Repository
-public class ItemDAO {
+public class L2hw2_ItemDAO {
     private SessionFactory sessionFactory;
 
     private static final String SQL_FIND_ITEM_BY_NAME = "SELECT * FROM ITEM WHERE NAME = :name";
 
-    public Item save(Item item) throws InternalServerError {
+    public L2hw2_Item save(L2hw2_Item item) throws InternalServerError {
         Transaction transaction = null;
         try (Session session = createSessionFactory().openSession()) {
             transaction = session.getTransaction();
@@ -35,7 +35,7 @@ public class ItemDAO {
         }
     }
 
-    public Item update(Item item) throws InternalServerError{
+    public L2hw2_Item update(L2hw2_Item item) throws InternalServerError{
         Transaction transaction = null;
         try (Session session = createSessionFactory().openSession()) {
             transaction = session.getTransaction();
@@ -52,7 +52,7 @@ public class ItemDAO {
         }
     }
 
-    public Item delete(Item item) throws InternalServerError{
+    public L2hw2_Item delete(L2hw2_Item item) throws InternalServerError{
         Transaction transaction = null;
         try (Session session = createSessionFactory().openSession()) {
             transaction = session.getTransaction();
@@ -69,9 +69,9 @@ public class ItemDAO {
         }
     }
 
-    public Item findById(Long id) throws InternalServerError, BadRequestException {
+    public L2hw2_Item findById(Long id) throws InternalServerError, BadRequestException {
         try (Session session = createSessionFactory().openSession()) {
-            return session.get(Item.class, id);
+            return session.get(L2hw2_Item.class, id);
         } catch (HibernateException e) {
             throw new InternalServerError(getClass().getSimpleName()+"-findById: "+id+" failed. "+e.getMessage());
         } catch (NoResultException noe){
@@ -79,11 +79,11 @@ public class ItemDAO {
         }
     }
 
-    public Item findByName(String name) throws InternalServerError{
+    public L2hw2_Item findByName(String name) throws InternalServerError{
         try (Session session = createSessionFactory().openSession()) {
-            return (Item) session.createSQLQuery(SQL_FIND_ITEM_BY_NAME)
+            return (L2hw2_Item) session.createSQLQuery(SQL_FIND_ITEM_BY_NAME)
                     .setParameter("name", name)
-                    .addEntity(Item.class).getSingleResult();
+                    .addEntity(L2hw2_Item.class).getSingleResult();
         } catch (HibernateException e) {
             throw new InternalServerError(getClass().getSimpleName()+"-findByName: "+name+" failed. "+e.getMessage());
         } catch (NoResultException e){

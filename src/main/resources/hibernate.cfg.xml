@@ -10,7 +10,7 @@
         <property name="hibernate.connection.password">11111111</property>
 
 
-        <mapping class="com.lesson2.homework2_2.model.Item"/>
+        <mapping class="com.lesson2.homework2_2.model.L2hw2_Item"/>
 
         <mapping class="com.lesson3.homework3_1.model.File"/>
         <mapping class="com.lesson3.homework3_1.model.Storage"/>
