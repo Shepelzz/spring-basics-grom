@@ -1,14 +1,26 @@
 package com.lesson6.homework6_1.model;
 
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
 
+@Entity
+@Table(name = "PASSENGER")
 public class Passenger extends Model {
+    @Id
+    @SequenceGenerator(name = "PASSENGER_SEQ", sequenceName = "PASSENGER_ID_SEQ", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PASSENGER_SEQ")
+    @Column(name = "ID")
     private Long id;
+    @Column(name = "LAST_NAME")
     private String lastName;
+    @Column(name = "NATIONALITY")
     private String nationality;
+    @Column(name = "DATE_OF_BIRTH")
     private Date dateOfBirth;
+    @Column(name = "PASSPORT_CODE")
     private String passportCode;
+    @ManyToMany(mappedBy = "passengers")
     private Collection<Flight> flights;
 
     public Long getId() {
