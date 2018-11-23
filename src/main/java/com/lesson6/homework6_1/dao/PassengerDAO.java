@@ -1,4 +1,7 @@
 package com.lesson6.homework6_1.dao;
 
-public interface PassengerDAO {
+import com.lesson6.homework6_1.model.Passenger;
+
+public interface PassengerDAO extends GeneralDAO<Passenger>{
+
 }

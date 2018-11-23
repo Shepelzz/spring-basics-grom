@@ -3,6 +3,7 @@ package com.lesson6.homework6_1.model;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 
 @Entity
 @Table(name = "PASSENGER")
@@ -20,9 +21,10 @@ public class Passenger extends Model {
     private Date dateOfBirth;
     @Column(name = "PASSPORT_CODE")
     private String passportCode;
-    @ManyToMany(mappedBy = "passengers")
-    private Collection<Flight> flights;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER, mappedBy = "passengers")
+    private Collection<Flight> flights = new HashSet<>();
 
+    @Override
     public Long getId() {
         return id;
     }

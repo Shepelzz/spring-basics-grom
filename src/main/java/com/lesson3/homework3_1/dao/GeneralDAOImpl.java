@@ -33,6 +33,8 @@ public abstract class GeneralDAOImpl<T extends Model> implements GeneralDAO<T>{
         }
     }
 
+
+
     public SessionFactory createSessionFactory(){
         if(sessionFactory == null)
             sessionFactory = new Configuration().configure().buildSessionFactory();

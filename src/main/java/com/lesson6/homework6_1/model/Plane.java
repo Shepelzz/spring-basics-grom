@@ -19,6 +19,7 @@ public class Plane extends Model{
     @Column(name = "AVG_FUEL_CONSUMPTION")
     private Double avgFuelConsumption;
 
+    @Override
     public Long getId() {
         return id;
     }

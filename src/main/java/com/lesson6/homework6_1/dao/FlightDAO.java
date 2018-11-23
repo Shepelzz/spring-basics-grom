@@ -1,4 +1,9 @@
 package com.lesson6.homework6_1.dao;
 
-public interface FlightDAO {
+import com.lesson6.homework6_1.model.Flight;
+
+public interface FlightDAO extends GeneralDAO<Flight>{
+
+
+
 }

@@ -3,6 +3,7 @@ package com.lesson6.homework6_1.model;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 
 @Entity
 @Table(name = "FLIGHT")
@@ -16,8 +17,9 @@ public class Flight extends Model {
     @JoinColumn(name="PLANE_ID", nullable = false)
     private Plane plane;
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "FLIGHT_PASSENGER", joinColumns = @JoinColumn(name = "FLIGHT_ID", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "PASSENGER_ID", referencedColumnName = "ID"))
-    private Collection<Passenger> passengers;
+    @JoinTable(name = "FLIGHT_PASSENGER", joinColumns = @JoinColumn(name = "FLIGHT_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "PASSENGER_ID", referencedColumnName = "ID"))
+    private Collection<Passenger> passengers = new HashSet<>();
     @Column(name = "DATE_FLIGHT")
     private Date dateFlight;
     @Column(name = "CITY_FROM")
@@ -25,6 +27,7 @@ public class Flight extends Model {
     @Column(name = "CITY_TO")
     private String cityTo;
 
+    @Override
     public Long getId() {
         return id;
     }
