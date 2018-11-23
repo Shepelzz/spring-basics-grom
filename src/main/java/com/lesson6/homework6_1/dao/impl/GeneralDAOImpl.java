@@ -39,4 +39,5 @@ public abstract class GeneralDAOImpl<T extends Model> implements GeneralDAO<T> {
         return entityManager.find(clazz, id);
     }
 
+
 }
