@@ -25,6 +25,7 @@ public class FlightController {
         try {
             return "flight saved with id: "+flightDAO.save(flight).getId();
         }catch (Exception e){
+            e.printStackTrace();
             return e.getMessage();
         }
     }

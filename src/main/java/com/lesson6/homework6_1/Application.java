@@ -1,4 +1,4 @@
-package com;
+package com.lesson6.homework6_1;
 
 import com.lesson6.homework6_1.controller.FlightController;
 import com.lesson6.homework6_1.controller.PassengerController;
@@ -45,8 +45,6 @@ public class Application {
 
     public static void main(String[] args) throws Exception{
         SpringApplication.run(Application.class, args);
-
-
 
         Passenger p1 = new Passenger();
             p1.setLastName("Gosha");
