@@ -5,6 +5,7 @@ import com.lesson6.homework6_1.controller.PassengerController;
 import com.lesson6.homework6_1.controller.PlaneController;
 import com.lesson6.homework6_1.model.Flight;
 import com.lesson6.homework6_1.model.Passenger;
+import com.lesson6.homework6_1.model.Plane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -44,25 +45,36 @@ public class Application {
         SpringApplication.run(Application.class, args);
 
         Passenger p1 = new Passenger();
-            p1.setLastName("Test person");
+            p1.setLastName("Passenger 1");
             p1.setNationality("UA");
-            p1.setPassportCode("TT666666TT");
-            p1.setDateOfBirth(makeDate("1991-14-20"));
-        Passenger p2 = sPassengerController.findById(28L);
-        Passenger p3 = sPassengerController.findById(6L);
+            p1.setPassportCode("345345df");
+            p1.setDateOfBirth(makeDate("1991-06-01"));
+        Passenger p2 = new Passenger();
+            p2.setLastName("Passenger 2");
+            p2.setNationality("UA");
+            p2.setPassportCode("TT666666TT");
+            p2.setDateOfBirth(makeDate("1999-12-20"));
+        Passenger p3 = new Passenger();
+            p3.setLastName("Passenger 3");
+            p3.setNationality("UA");
+            p3.setPassportCode("45sdsf");
+            p3.setDateOfBirth(makeDate("1987-04-10"));
+//        Passenger p2 = sPassengerController.findById(28L);
+//        Passenger p3 = sPassengerController.findById(6L);
 
         Passenger[] passengerList = new Passenger[]{p1,p2,p3};
 
         Flight flight = new Flight();
-            flight.setPlane(sPlaneController.findById(4L));
+            flight.setPlane(sPlaneController.findById(3L));
             for(Passenger p : passengerList)
                 flight.getPassengers().add(p);
             flight.setDateFlight(makeDate("2018-11-26"));
-            flight.setCityFrom("P1");
-            flight.setCityTo("P2");
+            flight.setCityFrom("Kiev");
+            flight.setCityTo("Kharkiv");
 
         for(Passenger p : passengerList)
             p.getFlights().add(flight);
+
 
         System.out.println(sFlightController.save(flight)); //РУГАЕТСЯ
         //System.out.println(sFlightController.update(flight)); //РАБОТАЕТ

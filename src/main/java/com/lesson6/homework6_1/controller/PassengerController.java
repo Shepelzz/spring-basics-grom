@@ -52,11 +52,12 @@ public class PassengerController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/get", produces = "text/plain")
     public @ResponseBody
-    String findById(Long id/*InputStream dataStream*/){
+    Passenger findById(Long id/*InputStream dataStream*/){
         try {
-            return passengerDAO.findById(id).toString();
+            return passengerDAO.findById(id);
         }catch (Exception e){
-            return e.getMessage();
+            System.out.println(e.getMessage());
         }
+        return null;
     }
 }

@@ -25,6 +25,7 @@ public class FlightController {
         try {
             return "flight saved with id: "+flightDAO.save(flight).getId();
         }catch (Exception e){
+            e.printStackTrace();
             return e.getMessage();
         }
     }
@@ -52,11 +53,12 @@ public class FlightController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/get", produces = "text/plain")
     public @ResponseBody
-    String findById(Long id/*InputStream dataStream*/){
+    Flight findById(Long id/*InputStream dataStream*/){
         try {
-            return flightDAO.findById(id).toString();
+            return flightDAO.findById(id);
         }catch (Exception e){
-            return e.getMessage();
+            System.out.println(e.getMessage());
         }
+        return null;
     }
 }

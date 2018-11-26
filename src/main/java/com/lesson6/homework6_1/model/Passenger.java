@@ -12,7 +12,7 @@ public class Passenger extends Model {
     @Id
     @SequenceGenerator(name = "PASSENGER_SEQ", sequenceName = "PASSENGER_ID_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PASSENGER_SEQ")
-    @Column(name = "ID")
+    @Column(name = "PASSENGER_ID")
     private Long id;
     @Column(name = "LAST_NAME")
     private String lastName;

@@ -12,14 +12,13 @@ public class Flight extends Model {
     @Id
     @SequenceGenerator(name = "FLIGHT_SEQ", sequenceName = "FLIGHT_ID_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FLIGHT_SEQ")
-    @Column(name = "ID")
+    @Column(name = "FLIGHT_ID")
     private Long id;
     @ManyToOne
     @JoinColumn(name="PLANE_ID", nullable = false)
     private Plane plane;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "FLIGHT_PASSENGER", joinColumns = @JoinColumn(name = "FLIGHT_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "PASSENGER_ID", referencedColumnName = "ID"))
+    @JoinTable(name = "FLIGHT_PASSENGER", joinColumns = @JoinColumn(name = "FLIGHT_ID"), inverseJoinColumns = @JoinColumn(name = "PASSENGER_ID"))
     private Collection<Passenger> passengers = new HashSet<>();
     @Column(name = "DATE_FLIGHT")
     private Date dateFlight;

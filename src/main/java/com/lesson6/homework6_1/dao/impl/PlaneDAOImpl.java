@@ -13,7 +13,7 @@ import java.util.Collection;
 @Transactional
 public class PlaneDAOImpl extends GeneralDAOImpl<Plane> implements PlaneDAO {
 
-    private static final String SQL_OLD_PLANES = "";
+    private static final String SQL_OLD_PLANES = "SELECT * FROM PLANE WHERE EXTRACT(YEAR FROM current_date)-YEAR_PRODUCED >= 20";
     private static final String SQL_REGULAR_PLANES = "";
 
     @PersistenceContext

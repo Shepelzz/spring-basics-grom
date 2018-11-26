@@ -9,7 +9,7 @@ public class Plane extends Model{
     @Id
     @SequenceGenerator(name = "PLANE_SEQ", sequenceName = "PLANE_ID_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PLANE_SEQ")
-    @Column(name = "ID")
+    @Column(name = "PLANE_ID")
     private Long id;
     @Column(name = "MODEL")
     private String model;

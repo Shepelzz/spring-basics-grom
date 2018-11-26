@@ -52,11 +52,12 @@ public class PlaneController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/get", produces = "text/plain")
     public @ResponseBody
-    String findById(Long id/*InputStream dataStream*/){
+    Plane findById(Long id/*InputStream dataStream*/){
         try {
-            return planeDAO.findById(id).toString();
+            return planeDAO.findById(id);
         }catch (Exception e){
-            return e.getMessage();
+            System.out.println(e.getMessage());
         }
+        return null;
     }
 }
