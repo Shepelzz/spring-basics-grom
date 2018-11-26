@@ -1,4 +1,4 @@
-package com.lesson6.homework6_1;
+package com;
 
 import com.lesson6.homework6_1.controller.FlightController;
 import com.lesson6.homework6_1.controller.PassengerController;
@@ -47,32 +47,32 @@ public class Application {
         SpringApplication.run(Application.class, args);
 
         Passenger p1 = new Passenger();
-            p1.setLastName("Gosha");
+            p1.setLastName("Passenger1");
             p1.setNationality("Russia");
             p1.setPassportCode("545");
             p1.setDateOfBirth(makeDate("1995-07-20"));
         Passenger p2 = new Passenger();
-            p2.setLastName("Ditto");
+            p2.setLastName("Passenger2");
             p2.setNationality("US");
             p2.setPassportCode("78RTG54");
             p2.setDateOfBirth(makeDate("1993-11-18"));
         Passenger p3 = new Passenger();
-            p3.setLastName("Конь");
+            p3.setLastName("Passenger3");
             p3.setNationality("UA");
             p3.setPassportCode("ПЕ75555ЩO");
             p3.setDateOfBirth(makeDate("1998-02-14"));
         Passenger p4 = new Passenger();
-            p4.setLastName("Пикачу");
+            p4.setLastName("Passenger4");
             p4.setNationality("UA");
             p4.setPassportCode("ЗЗ11111ЗЗ");
             p4.setDateOfBirth(makeDate("1968-15-18"));
         Passenger p5 = new Passenger();
-            p5.setLastName("Рахичу");
+            p5.setLastName("Passenger5");
             p5.setNationality("UA");
             p5.setPassportCode("ЕЕ778778ГШ");
             p5.setDateOfBirth(makeDate("1985-05-14"));
         Passenger p6 = new Passenger();
-            p6.setLastName("Ive");
+            p6.setLastName("Passenger6");
             p6.setNationality("US");
             p6.setPassportCode("78946");
             p6.setDateOfBirth(makeDate("1971-02-07"));

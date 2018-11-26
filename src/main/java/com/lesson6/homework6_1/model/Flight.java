@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 
 @Entity
 @Table(name = "FLIGHT")
@@ -74,5 +75,19 @@ public class Flight extends Model {
 
     public void setCityTo(String cityTo) {
         this.cityTo = cityTo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Flight flight = (Flight) o;
+        return Objects.equals(id, flight.id);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
     }
 }

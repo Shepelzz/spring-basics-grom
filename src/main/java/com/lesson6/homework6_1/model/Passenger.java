@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 
 @Entity
 @Table(name = "PASSENGER")
@@ -21,7 +22,7 @@ public class Passenger extends Model {
     private Date dateOfBirth;
     @Column(name = "PASSPORT_CODE")
     private String passportCode;
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER, mappedBy = "passengers")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "passengers")
     private Collection<Flight> flights = new HashSet<>();
 
     @Override
@@ -71,5 +72,20 @@ public class Passenger extends Model {
 
     public void setFlights(Collection<Flight> flights) {
         this.flights = flights;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Passenger passenger = (Passenger) o;
+        return Objects.equals(id, passenger.id) &&
+                Objects.equals(passportCode, passenger.passportCode);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, passportCode);
     }
 }

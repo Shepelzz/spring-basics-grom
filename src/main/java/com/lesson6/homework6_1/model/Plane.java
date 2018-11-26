@@ -1,6 +1,7 @@
 package com.lesson6.homework6_1.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "PLANE")
@@ -58,5 +59,21 @@ public class Plane extends Model{
 
     public void setAvgFuelConsumption(Double avgFuelConsumption) {
         this.avgFuelConsumption = avgFuelConsumption;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Plane plane = (Plane) o;
+        return Objects.equals(id, plane.id) &&
+                Objects.equals(model, plane.model) &&
+                Objects.equals(code, plane.code);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, model, code);
     }
 }
