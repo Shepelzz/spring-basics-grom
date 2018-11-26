@@ -22,7 +22,7 @@ public class Passenger extends Model {
     private Date dateOfBirth;
     @Column(name = "PASSPORT_CODE")
     private String passportCode;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "passengers")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "passengers")
     private Collection<Flight> flights = new HashSet<>();
 
     @Override

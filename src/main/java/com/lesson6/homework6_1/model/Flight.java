@@ -17,7 +17,7 @@ public class Flight extends Model {
     @ManyToOne
     @JoinColumn(name="PLANE_ID", nullable = false)
     private Plane plane;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "FLIGHT_PASSENGER", joinColumns = @JoinColumn(name = "FLIGHT_ID", referencedColumnName = "ID"),
             inverseJoinColumns = @JoinColumn(name = "PASSENGER_ID", referencedColumnName = "ID"))
     private Collection<Passenger> passengers = new HashSet<>();

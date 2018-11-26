@@ -47,56 +47,28 @@ public class Application {
         SpringApplication.run(Application.class, args);
 
         Passenger p1 = new Passenger();
-            p1.setLastName("Passenger1");
-            p1.setNationality("Russia");
-            p1.setPassportCode("545");
-            p1.setDateOfBirth(makeDate("1995-07-20"));
-        Passenger p2 = new Passenger();
-            p2.setLastName("Passenger2");
-            p2.setNationality("US");
-            p2.setPassportCode("78RTG54");
-            p2.setDateOfBirth(makeDate("1993-11-18"));
-        Passenger p3 = new Passenger();
-            p3.setLastName("Passenger3");
-            p3.setNationality("UA");
-            p3.setPassportCode("ПЕ75555ЩO");
-            p3.setDateOfBirth(makeDate("1998-02-14"));
-        Passenger p4 = new Passenger();
-            p4.setLastName("Passenger4");
-            p4.setNationality("UA");
-            p4.setPassportCode("ЗЗ11111ЗЗ");
-            p4.setDateOfBirth(makeDate("1968-15-18"));
-        Passenger p5 = new Passenger();
-            p5.setLastName("Passenger5");
-            p5.setNationality("UA");
-            p5.setPassportCode("ЕЕ778778ГШ");
-            p5.setDateOfBirth(makeDate("1985-05-14"));
-        Passenger p6 = new Passenger();
-            p6.setLastName("Passenger6");
-            p6.setNationality("US");
-            p6.setPassportCode("78946");
-            p6.setDateOfBirth(makeDate("1971-02-07"));
-        Passenger p7 = sPassengerController.findById(6L);
-        Passenger p8 = sPassengerController.findById(5L);
+            p1.setLastName("Test person");
+            p1.setNationality("UA");
+            p1.setPassportCode("TT666666TT");
+            p1.setDateOfBirth(makeDate("1991-14-20"));
+        Passenger p2 = sPassengerController.findById(28L);
+        Passenger p3 = sPassengerController.findById(6L);
 
-        Set<Passenger> passengerList = new HashSet<>(Arrays.asList(p1,p2,p3,p4,p5,p6,p7,p8));
+        Set<Passenger> passengerList = new HashSet<>(Arrays.asList(p1,p2,p3));
 
         Flight flight = new Flight();
-            flight.setPlane(sPlaneController.findById(3L));
+            flight.setPlane(sPlaneController.findById(4L));
             for(Passenger p : passengerList)
                 flight.getPassengers().add(p);
-            flight.setDateFlight(makeDate("2018-10-10"));
-            flight.setCityFrom("Prague");
-            flight.setCityTo("New-York");
+            flight.setDateFlight(makeDate("2018-11-26"));
+            flight.setCityFrom("P1");
+            flight.setCityTo("P2");
 
         for(Passenger p : passengerList)
             p.getFlights().add(flight);
 
-        System.out.println(sFlightController.save(flight));
-
-        //System.out.println(sPassengerController.findById(6L));
-
-
+        //System.out.println(sFlightController.save(flight)); //РУГАЕТСЯ
+        System.out.println(sFlightController.update(flight)); //РАБОТАЕТ
     }
 
     public static Date makeDate(String dt) throws ParseException {

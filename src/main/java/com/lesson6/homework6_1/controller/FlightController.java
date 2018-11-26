@@ -30,6 +30,17 @@ public class FlightController {
         }
     }
 
+    @RequestMapping(method = RequestMethod.PUT, value = "/update", produces = "text/plain")
+    public @ResponseBody
+    String update(Flight flight/*InputStream dataStream*/){
+        try {
+            return "flight with id: "+flightDAO.update(flight).getId()+" updated";
+        }catch (Exception e){
+            e.printStackTrace();
+            return e.getMessage();
+        }
+    }
+
     public Flight findById(Long id){
         return flightDAO.findById(id);
     }
