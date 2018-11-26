@@ -29,8 +29,34 @@ public class PassengerController {
         }
     }
 
+    @RequestMapping(method = RequestMethod.PUT, value = "/update", produces = "text/plain")
+    public @ResponseBody
+    String update(Passenger passenger/*InputStream dataStream*/){
+        try {
+            return "flight with id: "+passengerDAO.update(passenger).getId()+" was updated";
+        }catch (Exception e){
+            return e.getMessage();
+        }
+    }
 
-    public Passenger findById(Long id){
-        return passengerDAO.findById(id);
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete", produces = "text/plain")
+    public @ResponseBody
+    String update(Long id/*InputStream dataStream*/){
+        try {
+            passengerDAO.delete(id);
+            return "flight with id: "+id+" was deleted";
+        }catch (Exception e){
+            return e.getMessage();
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/get", produces = "text/plain")
+    public @ResponseBody
+    String findById(Long id/*InputStream dataStream*/){
+        try {
+            return passengerDAO.findById(id).toString();
+        }catch (Exception e){
+            return e.getMessage();
+        }
     }
 }

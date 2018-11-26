@@ -76,4 +76,15 @@ public class Plane extends Model{
 
         return Objects.hash(id, model, code);
     }
+
+    @Override
+    public String toString() {
+        return "Plane{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", code='" + code + '\'' +
+                ", yearProduced=" + yearProduced +
+                ", avgFuelConsumption=" + avgFuelConsumption +
+                '}';
+    }
 }

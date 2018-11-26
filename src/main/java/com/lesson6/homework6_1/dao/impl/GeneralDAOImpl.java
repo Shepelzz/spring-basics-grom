@@ -9,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 @Repository
-@Transactional
 public abstract class GeneralDAOImpl<T extends Model> implements GeneralDAO<T> {
 
     private Class<T> clazz;
@@ -17,20 +16,23 @@ public abstract class GeneralDAOImpl<T extends Model> implements GeneralDAO<T> {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public final void setClazz( Class<T> clazzToSet ){
+    final void setClazz( Class<T> clazzToSet ){
         this.clazz = clazzToSet;
     }
 
+    @Transactional
     public T save(T t){
         entityManager.persist(t);
         return t;
     }
 
+    @Transactional
     public T update(T t){
         entityManager.merge(t);
         return t;
     }
 
+    @Transactional
     public void delete(Long id){
         entityManager.remove(entityManager.find(clazz, id));
     }

@@ -25,7 +25,6 @@ public class FlightController {
         try {
             return "flight saved with id: "+flightDAO.save(flight).getId();
         }catch (Exception e){
-            e.printStackTrace();
             return e.getMessage();
         }
     }
@@ -34,15 +33,30 @@ public class FlightController {
     public @ResponseBody
     String update(Flight flight/*InputStream dataStream*/){
         try {
-            return "flight with id: "+flightDAO.update(flight).getId()+" updated";
+            return "flight with id: "+flightDAO.update(flight).getId()+" was updated";
         }catch (Exception e){
-            e.printStackTrace();
             return e.getMessage();
         }
     }
 
-    public Flight findById(Long id){
-        return flightDAO.findById(id);
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete", produces = "text/plain")
+    public @ResponseBody
+    String update(Long id/*InputStream dataStream*/){
+        try {
+            flightDAO.delete(id);
+            return "flight with id: "+id+" was deleted";
+        }catch (Exception e){
+            return e.getMessage();
+        }
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/get", produces = "text/plain")
+    public @ResponseBody
+    String findById(Long id/*InputStream dataStream*/){
+        try {
+            return flightDAO.findById(id).toString();
+        }catch (Exception e){
+            return e.getMessage();
+        }
+    }
 }

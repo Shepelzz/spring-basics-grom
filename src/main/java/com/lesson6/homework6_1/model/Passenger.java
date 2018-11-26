@@ -80,12 +80,28 @@ public class Passenger extends Model {
         if (o == null || getClass() != o.getClass()) return false;
         Passenger passenger = (Passenger) o;
         return Objects.equals(id, passenger.id) &&
-                Objects.equals(passportCode, passenger.passportCode);
+                Objects.equals(lastName, passenger.lastName) &&
+                Objects.equals(nationality, passenger.nationality) &&
+                Objects.equals(dateOfBirth, passenger.dateOfBirth) &&
+                Objects.equals(passportCode, passenger.passportCode) &&
+                Objects.equals(flights, passenger.flights);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, passportCode);
+        return Objects.hash(id, lastName, nationality, dateOfBirth, passportCode, flights);
+    }
+
+    @Override
+    public String toString() {
+        return "Passenger{" +
+                "id=" + id +
+                ", lastName='" + lastName + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", dateOfBirth=" + dateOfBirth.toString() +
+                ", passportCode='" + passportCode + '\'' +
+                ", flights=" + flights.toString() +
+                '}';
     }
 }

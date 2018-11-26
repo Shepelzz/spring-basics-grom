@@ -13,10 +13,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Component
 @SpringBootApplication
@@ -54,7 +51,7 @@ public class Application {
         Passenger p2 = sPassengerController.findById(28L);
         Passenger p3 = sPassengerController.findById(6L);
 
-        Set<Passenger> passengerList = new HashSet<>(Arrays.asList(p1,p2,p3));
+        Passenger[] passengerList = new Passenger[]{p1,p2,p3};
 
         Flight flight = new Flight();
             flight.setPlane(sPlaneController.findById(4L));
@@ -67,8 +64,11 @@ public class Application {
         for(Passenger p : passengerList)
             p.getFlights().add(flight);
 
-        //System.out.println(sFlightController.save(flight)); //РУГАЕТСЯ
-        System.out.println(sFlightController.update(flight)); //РАБОТАЕТ
+        System.out.println(sFlightController.save(flight)); //РУГАЕТСЯ
+        //System.out.println(sFlightController.update(flight)); //РАБОТАЕТ
+
+        //System.out.println(sPassengerController.findById(6L));
+
     }
 
     public static Date makeDate(String dt) throws ParseException {

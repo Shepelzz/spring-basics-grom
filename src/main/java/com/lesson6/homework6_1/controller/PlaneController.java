@@ -29,9 +29,34 @@ public class PlaneController {
         }
     }
 
-
-    public Plane findById(Long id){
-        return planeDAO.findById(id);
+    @RequestMapping(method = RequestMethod.PUT, value = "/update", produces = "text/plain")
+    public @ResponseBody
+    String update(Plane plane/*InputStream dataStream*/){
+        try {
+            return "flight with id: "+planeDAO.update(plane).getId()+" was updated";
+        }catch (Exception e){
+            return e.getMessage();
+        }
     }
 
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete", produces = "text/plain")
+    public @ResponseBody
+    String update(Long id/*InputStream dataStream*/){
+        try {
+            planeDAO.delete(id);
+            return "flight with id: "+id+" was deleted";
+        }catch (Exception e){
+            return e.getMessage();
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/get", produces = "text/plain")
+    public @ResponseBody
+    String findById(Long id/*InputStream dataStream*/){
+        try {
+            return planeDAO.findById(id).toString();
+        }catch (Exception e){
+            return e.getMessage();
+        }
+    }
 }

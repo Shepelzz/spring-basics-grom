@@ -90,4 +90,16 @@ public class Flight extends Model {
 
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "id=" + id +
+                ", plane=" + plane.toString() +
+                ", passengers=" + passengers.toString() +
+                ", dateFlight=" + dateFlight.toString() +
+                ", cityFrom='" + cityFrom + '\'' +
+                ", cityTo='" + cityTo + '\'' +
+                '}';
+    }
 }
