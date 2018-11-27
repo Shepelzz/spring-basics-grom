@@ -5,7 +5,6 @@ import com.lesson6.homework6_1.controller.PassengerController;
 import com.lesson6.homework6_1.controller.PlaneController;
 import com.lesson6.homework6_1.model.Flight;
 import com.lesson6.homework6_1.model.Passenger;
-import com.lesson6.homework6_1.model.Plane;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -44,33 +43,33 @@ public class Application {
     public static void main(String[] args) throws Exception{
         SpringApplication.run(Application.class, args);
 
-        Passenger p1 = new Passenger();
-            p1.setLastName("Passenger 1");
-            p1.setNationality("UA");
-            p1.setPassportCode("345345df");
-            p1.setDateOfBirth(makeDate("1991-06-01"));
-        Passenger p2 = new Passenger();
-            p2.setLastName("Passenger 2");
-            p2.setNationality("UA");
-            p2.setPassportCode("TT666666TT");
-            p2.setDateOfBirth(makeDate("1999-12-20"));
-        Passenger p3 = new Passenger();
-            p3.setLastName("Passenger 3");
-            p3.setNationality("UA");
-            p3.setPassportCode("45sdsf");
-            p3.setDateOfBirth(makeDate("1987-04-10"));
-//        Passenger p2 = sPassengerController.findById(28L);
-//        Passenger p3 = sPassengerController.findById(6L);
+        Passenger p4 = new Passenger();
+            p4.setLastName("Passenger 4");
+            p4.setNationality("Kanada");
+            p4.setPassportCode("0000000T11");
+            p4.setDateOfBirth(makeDate("1975-11-21"));
+        Passenger p5 = new Passenger();
+            p5.setLastName("Passenger 5");
+            p5.setNationality("China");
+            p5.setPassportCode("cucuyte12");
+            p5.setDateOfBirth(makeDate("1945-10-20"));
+        Passenger p6 = new Passenger();
+            p6.setLastName("Passenger 6");
+            p6.setNationality("RU");
+            p6.setPassportCode("СС555362");
+            p6.setDateOfBirth(makeDate("2000-08-18"));
+        Passenger p1 = sPassengerController.findById(10L);
 
-        Passenger[] passengerList = new Passenger[]{p1,p2,p3};
+
+        Passenger[] passengerList = new Passenger[]{p1,p4,p5,p6};
 
         Flight flight = new Flight();
-            flight.setPlane(sPlaneController.findById(3L));
+            flight.setPlane(sPlaneController.findById(1L));
             for(Passenger p : passengerList)
                 flight.getPassengers().add(p);
-            flight.setDateFlight(makeDate("2018-11-26"));
-            flight.setCityFrom("Kiev");
-            flight.setCityTo("Kharkiv");
+            flight.setDateFlight(makeDate("2018-11-27"));
+            flight.setCityFrom("Lviv");
+            flight.setCityTo("Kiev");
 
         for(Passenger p : passengerList)
             p.getFlights().add(flight);

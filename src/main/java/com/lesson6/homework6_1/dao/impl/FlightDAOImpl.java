@@ -40,3 +40,4 @@ public class FlightDAOImpl extends GeneralDAOImpl<Flight> implements FlightDAO {
         return null;
     }
 }
+
