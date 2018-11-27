@@ -9,22 +9,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "PASSENGER")
 public class Passenger extends Model {
+
+    private Long id;
+    private String lastName;
+    private String nationality;
+    private Date dateOfBirth;
+    private String passportCode;
+    private Collection<Flight> flights = new HashSet<>();
+
     @Id
     @SequenceGenerator(name = "PASSENGER_SEQ", sequenceName = "PASSENGER_ID_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PASSENGER_SEQ")
     @Column(name = "PASSENGER_ID")
-    private Long id;
-    @Column(name = "LAST_NAME")
-    private String lastName;
-    @Column(name = "NATIONALITY")
-    private String nationality;
-    @Column(name = "DATE_OF_BIRTH")
-    private Date dateOfBirth;
-    @Column(name = "PASSPORT_CODE")
-    private String passportCode;
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "passengers")
-    private Collection<Flight> flights = new HashSet<>();
-
     @Override
     public Long getId() {
         return id;
@@ -34,6 +30,7 @@ public class Passenger extends Model {
         this.id = id;
     }
 
+    @Column(name = "LAST_NAME")
     public String getLastName() {
         return lastName;
     }
@@ -42,6 +39,7 @@ public class Passenger extends Model {
         this.lastName = lastName;
     }
 
+    @Column(name = "NATIONALITY")
     public String getNationality() {
         return nationality;
     }
@@ -50,6 +48,7 @@ public class Passenger extends Model {
         this.nationality = nationality;
     }
 
+    @Column(name = "DATE_OF_BIRTH")
     public Date getDateOfBirth() {
         return dateOfBirth;
     }
@@ -58,6 +57,7 @@ public class Passenger extends Model {
         this.dateOfBirth = dateOfBirth;
     }
 
+    @Column(name = "PASSPORT_CODE")
     public String getPassportCode() {
         return passportCode;
     }
@@ -66,6 +66,7 @@ public class Passenger extends Model {
         this.passportCode = passportCode;
     }
 
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "passengers")
     public Collection<Flight> getFlights() {
         return flights;
     }

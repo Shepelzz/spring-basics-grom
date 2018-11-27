@@ -6,20 +6,17 @@ import java.util.Objects;
 @Entity
 @Table(name = "PLANE")
 public class Plane extends Model{
+
+    private Long id;
+    private String model;
+    private String code;
+    private int yearProduced;
+    private Double avgFuelConsumption;
+
     @Id
     @SequenceGenerator(name = "PLANE_SEQ", sequenceName = "PLANE_ID_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PLANE_SEQ")
     @Column(name = "PLANE_ID")
-    private Long id;
-    @Column(name = "MODEL")
-    private String model;
-    @Column(name = "CODE")
-    private String code;
-    @Column(name = "YEAR_PRODUCED")
-    private int yearProduced;
-    @Column(name = "AVG_FUEL_CONSUMPTION")
-    private Double avgFuelConsumption;
-
     @Override
     public Long getId() {
         return id;
@@ -29,6 +26,7 @@ public class Plane extends Model{
         this.id = id;
     }
 
+    @Column(name = "MODEL")
     public String getModel() {
         return model;
     }
@@ -37,6 +35,7 @@ public class Plane extends Model{
         this.model = model;
     }
 
+    @Column(name = "CODE")
     public String getCode() {
         return code;
     }
@@ -45,6 +44,7 @@ public class Plane extends Model{
         this.code = code;
     }
 
+    @Column(name = "YEAR_PRODUCED")
     public int getYearProduced() {
         return yearProduced;
     }
@@ -53,6 +53,7 @@ public class Plane extends Model{
         this.yearProduced = yearProduced;
     }
 
+    @Column(name = "AVG_FUEL_CONSUMPTION")
     public Double getAvgFuelConsumption() {
         return avgFuelConsumption;
     }

@@ -43,33 +43,28 @@ public class Application {
     public static void main(String[] args) throws Exception{
         SpringApplication.run(Application.class, args);
 
-        Passenger p4 = new Passenger();
-            p4.setLastName("Passenger 4");
-            p4.setNationality("Kanada");
-            p4.setPassportCode("0000000T11");
-            p4.setDateOfBirth(makeDate("1975-11-21"));
-        Passenger p5 = new Passenger();
-            p5.setLastName("Passenger 5");
-            p5.setNationality("China");
-            p5.setPassportCode("cucuyte12");
-            p5.setDateOfBirth(makeDate("1945-10-20"));
-        Passenger p6 = new Passenger();
-            p6.setLastName("Passenger 6");
-            p6.setNationality("RU");
-            p6.setPassportCode("СС555362");
-            p6.setDateOfBirth(makeDate("2000-08-18"));
-        Passenger p1 = sPassengerController.findById(10L);
+        Passenger p7 = new Passenger();
+            p7.setLastName("Passenger 7");
+            p7.setNationality("Kanada");
+            p7.setPassportCode("0000000T11");
+            p7.setDateOfBirth(makeDate("1975-11-21"));
+        Passenger p8 = new Passenger();
+            p8.setLastName("Passenger 8");
+            p8.setNationality("China");
+            p8.setPassportCode("cucuyte12");
+            p8.setDateOfBirth(makeDate("1945-10-20"));
+        Passenger p6 = sPassengerController.findById(15L);
 
 
-        Passenger[] passengerList = new Passenger[]{p1,p4,p5,p6};
+        Passenger[] passengerList = new Passenger[]{p6,p7,p8};
 
         Flight flight = new Flight();
-            flight.setPlane(sPlaneController.findById(1L));
+            flight.setPlane(sPlaneController.findById(4L));
             for(Passenger p : passengerList)
                 flight.getPassengers().add(p);
             flight.setDateFlight(makeDate("2018-11-27"));
-            flight.setCityFrom("Lviv");
-            flight.setCityTo("Kiev");
+            flight.setCityFrom("Odessa");
+            flight.setCityTo("Krakov");
 
         for(Passenger p : passengerList)
             p.getFlights().add(flight);

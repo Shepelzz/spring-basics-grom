@@ -9,24 +9,18 @@ import java.util.Objects;
 @Entity
 @Table(name = "FLIGHT")
 public class Flight extends Model {
+
+    private Long id;
+    private Plane plane;
+    private Collection<Passenger> passengers = new HashSet<>();
+    private Date dateFlight;
+    private String cityFrom;
+    private String cityTo;
+
     @Id
     @SequenceGenerator(name = "FLIGHT_SEQ", sequenceName = "FLIGHT_ID_SEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "FLIGHT_SEQ")
     @Column(name = "FLIGHT_ID")
-    private Long id;
-    @ManyToOne
-    @JoinColumn(name="PLANE_ID", nullable = false)
-    private Plane plane;
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "FLIGHT_PASSENGER", joinColumns = @JoinColumn(name = "FLIGHT_ID"), inverseJoinColumns = @JoinColumn(name = "PASSENGER_ID"))
-    private Collection<Passenger> passengers = new HashSet<>();
-    @Column(name = "DATE_FLIGHT")
-    private Date dateFlight;
-    @Column(name = "CITY_FROM")
-    private String cityFrom;
-    @Column(name = "CITY_TO")
-    private String cityTo;
-
     @Override
     public Long getId() {
         return id;
@@ -36,6 +30,8 @@ public class Flight extends Model {
         this.id = id;
     }
 
+    @ManyToOne
+    @JoinColumn(name="PLANE_ID", nullable = false)
     public Plane getPlane() {
         return plane;
     }
@@ -44,6 +40,8 @@ public class Flight extends Model {
         this.plane = plane;
     }
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "FLIGHT_PASSENGER", joinColumns = @JoinColumn(name = "FLIGHT_ID"), inverseJoinColumns = @JoinColumn(name = "PASSENGER_ID"))
     public Collection<Passenger> getPassengers() {
         return passengers;
     }
@@ -52,6 +50,7 @@ public class Flight extends Model {
         this.passengers = passengers;
     }
 
+    @Column(name = "DATE_FLIGHT")
     public Date getDateFlight() {
         return dateFlight;
     }
@@ -60,6 +59,7 @@ public class Flight extends Model {
         this.dateFlight = dateFlight;
     }
 
+    @Column(name = "CITY_FROM")
     public String getCityFrom() {
         return cityFrom;
     }
@@ -68,6 +68,7 @@ public class Flight extends Model {
         this.cityFrom = cityFrom;
     }
 
+    @Column(name = "CITY_TO")
     public String getCityTo() {
         return cityTo;
     }
