@@ -21,22 +21,26 @@ public abstract class GeneralDAOImpl<T extends Model> implements GeneralDAO<T> {
     }
 
     @Transactional
+    @Override
     public T save(T t){
         entityManager.persist(t);
         return t;
     }
 
     @Transactional
+    @Override
     public T update(T t){
         entityManager.merge(t);
         return t;
     }
 
     @Transactional
+    @Override
     public void delete(Long id){
         entityManager.remove(entityManager.find(clazz, id));
     }
 
+    @Override
     public T findById(Long id){
         return entityManager.find(clazz, id);
     }

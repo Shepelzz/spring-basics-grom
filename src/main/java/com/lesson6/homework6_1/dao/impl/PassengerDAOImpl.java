@@ -17,11 +17,12 @@ public class PassengerDAOImpl extends GeneralDAOImpl<Passenger> implements Passe
     private static final String SQL_REGULAR_PASSENGERS = "SELECT *\n" +
             "FROM PASSENGER\n" +
             "WHERE EXISTS (\n" +
-            "    SELECT PASSENGER_ID \n" +
-            "    FROM FLIGHT_PASSENGER\n" +
-            "    WHERE PASSENGER.ID = FLIGHT_PASSENGER.PASSENGER_ID\n" +
-            "    GROUP BY PASSENGER_ID\n" +
-            "    HAVING COUNT(FLIGHT_ID) > 1\n" +
+            "    SELECT  *\n" +
+            "    FROM    FLIGHT_PASSENGER fp\n" +
+            "       JOIN FLIGHT f ON fp.FLIGHT_ID = f.FLIGHT_ID\n" +
+            "    WHERE fp.PASSENGER_ID = PASSENGER.PASSENGER_ID\n" +
+            "    GROUP BY fp.PASSENGER_ID, EXTRACT(YEAR FROM f.DATE_FLIGHT)\n" +
+            "    HAVING COUNT(DISTINCT f.FLIGHT_ID) >= 25" +
             ")";
 
     @PersistenceContext

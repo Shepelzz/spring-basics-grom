@@ -40,7 +40,7 @@ public class Flight extends Model {
         this.plane = plane;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER) //, cascade = CascadeType.ALL
     @JoinTable(name = "FLIGHT_PASSENGER", joinColumns = @JoinColumn(name = "FLIGHT_ID"), inverseJoinColumns = @JoinColumn(name = "PASSENGER_ID"))
     public Collection<Passenger> getPassengers() {
         return passengers;
