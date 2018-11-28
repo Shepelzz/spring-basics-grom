@@ -5,12 +5,12 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "PLANE")
-public class Plane extends Model{
+public class Plane extends GeneralModel {
 
     private Long id;
     private String model;
     private String code;
-    private int yearProduced;
+    private Integer yearProduced;
     private Double avgFuelConsumption;
 
     @Id
@@ -45,11 +45,11 @@ public class Plane extends Model{
     }
 
     @Column(name = "YEAR_PRODUCED")
-    public int getYearProduced() {
+    public Integer getYearProduced() {
         return yearProduced;
     }
 
-    public void setYearProduced(int yearProduced) {
+    public void setYearProduced(Integer yearProduced) {
         this.yearProduced = yearProduced;
     }
 
@@ -67,15 +67,14 @@ public class Plane extends Model{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Plane plane = (Plane) o;
-        return Objects.equals(id, plane.id) &&
-                Objects.equals(model, plane.model) &&
+        return Objects.equals(model, plane.model) &&
                 Objects.equals(code, plane.code);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, model, code);
+        return Objects.hash(model, code);
     }
 
     @Override

@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -34,6 +34,6 @@ public class PassengerDAOImpl extends GeneralDAOImpl<Passenger> implements Passe
 
     @Override
     public Collection<Passenger> regularPassengers() {
-        return (HashSet<Passenger>) entityManager.createNativeQuery(SQL_REGULAR_PASSENGERS, Passenger.class).getResultList();
+        return (List<Passenger>) entityManager.createNativeQuery(SQL_REGULAR_PASSENGERS, Passenger.class).getResultList();
     }
 }

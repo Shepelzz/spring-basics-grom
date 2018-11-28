@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "FLIGHT")
-public class Flight extends Model {
+public class Flight extends GeneralModel {
 
     private Long id;
     private Plane plane;
@@ -96,7 +96,6 @@ public class Flight extends Model {
         return "Flight{" +
                 "id=" + id +
                 ", plane=" + plane.toString() +
-                ", passengers=" + passengers.toString() +
                 ", dateFlight=" + dateFlight.toString() +
                 ", cityFrom='" + cityFrom + '\'' +
                 ", cityTo='" + cityTo + '\'' +

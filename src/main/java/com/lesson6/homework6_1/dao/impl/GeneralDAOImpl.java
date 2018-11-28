@@ -1,7 +1,7 @@
 package com.lesson6.homework6_1.dao.impl;
 
 import com.lesson6.homework6_1.dao.GeneralDAO;
-import com.lesson6.homework6_1.model.Model;
+import com.lesson6.homework6_1.model.GeneralModel;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 @Repository
-public abstract class GeneralDAOImpl<T extends Model> implements GeneralDAO<T> {
+public abstract class GeneralDAOImpl<T extends GeneralModel> implements GeneralDAO<T> {
 
     private Class<T> clazz;
 
@@ -44,6 +44,7 @@ public abstract class GeneralDAOImpl<T extends Model> implements GeneralDAO<T> {
     public T findById(Long id){
         return entityManager.find(clazz, id);
     }
+
 
 
 }

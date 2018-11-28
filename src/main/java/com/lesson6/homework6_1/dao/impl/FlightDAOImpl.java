@@ -1,15 +1,15 @@
 package com.lesson6.homework6_1.dao.impl;
 
 import com.lesson6.homework6_1.dao.FlightDAO;
-import com.lesson6.homework6_1.model.Filter;
-import com.lesson6.homework6_1.model.Flight;
+import com.lesson6.homework6_1.model.*;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.*;
 import javax.transaction.Transactional;
 import java.util.Collection;
-import java.util.HashSet;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -44,22 +44,41 @@ public class FlightDAOImpl extends GeneralDAOImpl<Flight> implements FlightDAO {
 
     @Override
     public Collection<Flight> flightsByDate(Filter filter) {
-       // https://www.ibm.com/developerworks/ru/library/j-typesafejpa/index.html
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Flight> criteriaQuery = cb.createQuery(Flight.class);
+        Root<Flight> flightRoot = criteriaQuery.from(Flight.class);
+        Join<Flight, Plane> planes = flightRoot.join(Flight_.plane);
 
+        criteriaQuery.select(flightRoot);
 
-        return null;//(Collection<Flight>) cb.createQuery(SQL_FLIGHTS_BY_DATE, Flight.class);
+        Predicate criteria = cb.conjunction();
+        //CityFrom
+        if(filter.getCityFrom() != null)
+            criteria = cb.and(criteria, cb.equal(flightRoot.get(Flight_.cityFrom), filter.getCityFrom()));
+        //CityTo
+        if(filter.getCityTo() != null)
+            criteria = cb.and(criteria, cb.equal(flightRoot.get(Flight_.cityTo), filter.getCityTo()));
+        //Dates
+        if(filter.getDateFrom() != null && filter.getDateTo() != null)
+            criteria = cb.and(criteria, cb.between(flightRoot.get(Flight_.dateFlight), filter.getDateFrom(), filter.getDateTo()));
+        //Plane
+        if(filter.getPlaneModel() != null)
+            criteria = cb.and(criteria, cb.equal(planes.get(Plane_.model), filter.getPlaneModel()));
+
+        criteriaQuery.where(criteria);
+        return entityManager.createQuery(criteriaQuery).getResultList();
     }
 
     @Override
     public Collection<Flight> mostPopularTo() {
-        return (HashSet<Flight>) entityManager.createNativeQuery(SQL_MOST_POPULAR_TO, Flight.class)
-                    .setMaxResults(10)
-                    .getResultList();
+        return (List<Flight>) entityManager.createNativeQuery(SQL_MOST_POPULAR_TO, Flight.class)
+                .setMaxResults(10)
+                .getResultList();
     }
 
     @Override
     public Collection<Flight> mostPopularFrom() {
-        return (HashSet<Flight>) entityManager.createNativeQuery(SQL_MOST_POPULAR_FROM, Flight.class)
+        return (List<Flight>) entityManager.createNativeQuery(SQL_MOST_POPULAR_FROM, Flight.class)
                 .setMaxResults(10)
                 .getResultList();
     }

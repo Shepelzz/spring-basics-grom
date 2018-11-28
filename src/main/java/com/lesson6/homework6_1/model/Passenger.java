@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "PASSENGER")
-public class Passenger extends Model {
+public class Passenger extends GeneralModel {
 
     private Long id;
     private String lastName;

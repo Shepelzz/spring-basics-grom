@@ -81,6 +81,26 @@ public class Application {
 
             //System.out.println(sPassengerController.findById(6L));
 
+//        Filter filter = new Filter();
+//        filter.setCityFrom("Kiev");
+//        filter.setCityTo("Chernihiv");
+//        filter.setPlaneModel("Boeing 777");
+//        filter.setDate(makeDate("2018-01-24"));
+//
+//        System.out.println("flightsByDate:");
+//        Collection<Flight> flights = sFlightController.flightsByDate(filter);
+//
+//        for(Flight f : flights)
+//            System.out.println(f.toString());
+
+//        System.out.println("mostPopularFrom:");
+//        for(Flight f : sFlightController.mostPopularFrom())
+//            System.out.println(f.toString());
+//
+//        System.out.println("mostPopularTo:");
+//        for(Flight f : sFlightController.mostPopularTo())
+//            System.out.println(f.toString());
+
 
     }
 
