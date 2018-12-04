@@ -1,10 +1,7 @@
 package com.lesson6.homework6_1.model;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "FLIGHT")
@@ -12,7 +9,7 @@ public class Flight extends GeneralModel {
 
     private Long id;
     private Plane plane;
-    private Collection<Passenger> passengers = new HashSet<>();
+    private Set<Passenger> passengers = new HashSet<>();
     private Date dateFlight;
     private String cityFrom;
     private String cityTo;
@@ -42,11 +39,11 @@ public class Flight extends GeneralModel {
 
     @ManyToMany(fetch = FetchType.EAGER) //, cascade = CascadeType.ALL
     @JoinTable(name = "FLIGHT_PASSENGER", joinColumns = @JoinColumn(name = "FLIGHT_ID"), inverseJoinColumns = @JoinColumn(name = "PASSENGER_ID"))
-    public Collection<Passenger> getPassengers() {
+    public Set<Passenger> getPassengers() {
         return passengers;
     }
 
-    public void setPassengers(Collection<Passenger> passengers) {
+    public void setPassengers(Set<Passenger> passengers) {
         this.passengers = passengers;
     }
 

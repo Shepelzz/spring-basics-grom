@@ -1,7 +1,5 @@
 package com.lesson7.homework7_1.model;
 
-import com.lesson6.homework6_1.model.GeneralModel;
-
 import javax.persistence.*;
 
 @Entity

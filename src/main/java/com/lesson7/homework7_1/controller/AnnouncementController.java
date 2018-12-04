@@ -1,29 +1,30 @@
 package com.lesson7.homework7_1.controller;
 
-import com.lesson7.homework7_1.dao.UserDAO;
-import com.lesson7.homework7_1.model.User;
-import com.lesson7.homework7_1.service.UserService;
+import com.lesson7.homework7_1.dao.AnnouncementDAO;
+import com.lesson7.homework7_1.model.Announcement;
+import com.lesson7.homework7_1.service.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(value = "/user")
-public class UserController {
-    private UserService userService;
-    private UserDAO userDAO;
+@RequestMapping(value = "/announcement")
+public class AnnouncementController {
+
+    private AnnouncementService announcementService;
+    private AnnouncementDAO announcementDAO;
 
     @Autowired
-    public UserController(UserService userService, UserDAO userDAO) {
-        this.userService = userService;
-        this.userDAO = userDAO;
+    public AnnouncementController(AnnouncementService announcementService, AnnouncementDAO announcementDAO) {
+        this.announcementService = announcementService;
+        this.announcementDAO = announcementDAO;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/save")
     public @ResponseBody
-    User save(@RequestBody User user){
+    Announcement save(@RequestBody Announcement announcement){
         try {
-            return userService.save(user);
+            return announcementService.save(announcement);
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -32,9 +33,9 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/update")
     public @ResponseBody
-    User update(@RequestBody User user){
+    Announcement update(@RequestBody Announcement announcement){
         try {
-            return userService.update(user);
+            return announcementService.update(announcement);
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -45,7 +46,7 @@ public class UserController {
     public @ResponseBody
     String delete(@RequestParam("id") Long id){
         try {
-            userDAO.delete(id);
+            announcementDAO.delete(id);
             return "flight with id: "+id+" was deleted";
         }catch (Exception e){
             return e.getMessage();
@@ -54,9 +55,9 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/get-by-id")
     public @ResponseBody
-    User findById(@RequestParam("id") Long id){
+    Announcement findById(@RequestParam("id") Long id){
         try {
-            return userDAO.findById(id);
+            return announcementDAO.findById(id);
         }catch (Exception e){
             e.printStackTrace();
             return null;

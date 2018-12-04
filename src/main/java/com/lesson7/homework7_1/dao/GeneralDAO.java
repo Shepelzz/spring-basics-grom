@@ -1,6 +1,6 @@
 package com.lesson7.homework7_1.dao;
 
-import com.lesson6.homework6_1.model.GeneralModel;
+import com.lesson7.homework7_1.model.GeneralModel;
 
 public interface GeneralDAO<T extends GeneralModel> {
 

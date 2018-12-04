@@ -1,7 +1,7 @@
 package com.lesson7.homework7_1.dao.impl;
 
-import com.lesson6.homework6_1.dao.GeneralDAO;
-import com.lesson6.homework6_1.model.GeneralModel;
+import com.lesson7.homework7_1.dao.GeneralDAO;
+import com.lesson7.homework7_1.model.GeneralModel;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

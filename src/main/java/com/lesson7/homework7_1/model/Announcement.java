@@ -5,13 +5,13 @@ import java.util.Date;
 
 @Entity
 @Table(name = "ANNOUNCEMENT")
-public class Announcement extends GeneralModel{
+public class Announcement extends GeneralModel {
 
     private Long id;
     private String title;
     private String description;
     private Integer price;
-    private Currency currency;
+    private String currency;
     private Subcategory subcategory;
     private String city;
     private String phone;
@@ -60,13 +60,12 @@ public class Announcement extends GeneralModel{
         this.price = price;
     }
 
-    @ManyToOne
-    @JoinColumn(name="CURRENCY_ID", nullable = false)
-    public Currency getCurrency() {
+    @Column(name = "CURRENCY")
+    public String getCurrency() {
         return currency;
     }
 
-    public void setCurrency(Currency currency) {
+    public void setCurrency(String currency) {
         this.currency = currency;
     }
 

@@ -1,10 +1,7 @@
 package com.lesson6.homework6_1.model;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table(name = "PASSENGER")
@@ -15,7 +12,7 @@ public class Passenger extends GeneralModel {
     private String nationality;
     private Date dateOfBirth;
     private String passportCode;
-    private Collection<Flight> flights = new HashSet<>();
+    private Set<Flight> flights = new HashSet<>();
 
     @Id
     @SequenceGenerator(name = "PASSENGER_SEQ", sequenceName = "PASSENGER_ID_SEQ", allocationSize = 1)
@@ -67,11 +64,11 @@ public class Passenger extends GeneralModel {
     }
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "passengers")
-    public Collection<Flight> getFlights() {
+    public Set<Flight> getFlights() {
         return flights;
     }
 
-    public void setFlights(Collection<Flight> flights) {
+    public void setFlights(Set<Flight> flights) {
         this.flights = flights;
     }
 
