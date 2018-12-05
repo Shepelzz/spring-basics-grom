@@ -2,6 +2,7 @@ package com.lesson7.homework7_1.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "ANNOUNCEMENT")
@@ -132,5 +133,48 @@ public class Announcement extends GeneralModel {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Announcement that = (Announcement) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(price, that.price) &&
+                Objects.equals(currency, that.currency) &&
+                Objects.equals(subcategory, that.subcategory) &&
+                Objects.equals(city, that.city) &&
+                Objects.equals(phone, that.phone) &&
+                Objects.equals(user, that.user) &&
+                Objects.equals(activeFrom, that.activeFrom) &&
+                Objects.equals(activeTo, that.activeTo) &&
+                Objects.equals(createDate, that.createDate);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, title, description, price, currency, subcategory, city, phone, user, activeFrom, activeTo, createDate);
+    }
+
+    @Override
+    public String toString() {
+        return "Announcement{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", currency='" + currency + '\'' +
+                ", subcategory=" + subcategory.getId() +
+                ", city='" + city + '\'' +
+                ", phone='" + phone + '\'' +
+                ", user=" + user.getId() +
+                ", activeFrom=" + activeFrom.toString() +
+                ", activeTo=" + activeTo.toString() +
+                ", createDate=" + createDate.toString() +
+                '}';
     }
 }

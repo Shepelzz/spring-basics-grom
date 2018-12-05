@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class CategoryDAOImpl extends GeneralDAOImpl<Category> implements CategoryDAO {
+
+    public CategoryDAOImpl() {
+        setClazz(Category.class);
+    }
 }

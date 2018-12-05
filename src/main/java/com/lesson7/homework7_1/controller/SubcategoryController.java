@@ -21,8 +21,8 @@ public class SubcategoryController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/save")
-    public @ResponseBody
-    Subcategory save(@RequestBody Subcategory subcategory){
+    public //@ResponseBody
+    Subcategory save(Subcategory subcategory){
         try {
             return subcategoryService.save(subcategory);
         }catch (Exception e){
@@ -32,8 +32,8 @@ public class SubcategoryController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/update")
-    public @ResponseBody
-    Subcategory update(@RequestBody Subcategory subcategory){
+    public //@ResponseBody
+    Subcategory update(Subcategory subcategory){
         try {
             return subcategoryService.update(subcategory);
         }catch (Exception e){
@@ -43,8 +43,8 @@ public class SubcategoryController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete")
-    public @ResponseBody
-    String delete(@RequestParam("id") Long id){
+    public //@ResponseBody
+    String delete(Long id){
         try {
             categoryDAO.delete(id);
             return "flight with id: "+id+" was deleted";
@@ -54,8 +54,8 @@ public class SubcategoryController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/get-by-id")
-    public @ResponseBody
-    Subcategory findById(@RequestParam("id") Long id){
+    public //@ResponseBody
+    Subcategory findById(Long id){
         try {
             return categoryDAO.findById(id);
         }catch (Exception e){

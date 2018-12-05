@@ -2,10 +2,13 @@ package com.lesson7.homework7_1.controller;
 
 import com.lesson7.homework7_1.dao.AnnouncementDAO;
 import com.lesson7.homework7_1.model.Announcement;
+import com.lesson7.homework7_1.model.Filter;
 import com.lesson7.homework7_1.service.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/announcement")
@@ -58,6 +61,15 @@ public class AnnouncementController {
     Announcement findById(@RequestParam("id") Long id){
         try {
             return announcementDAO.findById(id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Announcement> getTopAnnouncements(Filter filter){
+        try {
+            return announcementDAO.getTopAnnouncements(filter);
         }catch (Exception e){
             e.printStackTrace();
             return null;

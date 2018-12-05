@@ -20,8 +20,8 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/save")
-    public @ResponseBody
-    User save(@RequestBody User user){
+    public //@ResponseBody
+    User save(User user){
         try {
             return userService.save(user);
         }catch (Exception e){
@@ -31,8 +31,8 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/update")
-    public @ResponseBody
-    User update(@RequestBody User user){
+    public //@ResponseBody
+    User update(User user){
         try {
             return userService.update(user);
         }catch (Exception e){
@@ -42,8 +42,8 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete")
-    public @ResponseBody
-    String delete(@RequestParam("id") Long id){
+    public //@ResponseBody
+    String delete(Long id){
         try {
             userDAO.delete(id);
             return "flight with id: "+id+" was deleted";
@@ -53,8 +53,8 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/get-by-id")
-    public @ResponseBody
-    User findById(@RequestParam("id") Long id){
+    public //@ResponseBody
+    User findById(Long id){
         try {
             return userDAO.findById(id);
         }catch (Exception e){

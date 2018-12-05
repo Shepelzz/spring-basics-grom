@@ -6,4 +6,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class SubcategoryDAOImpl extends GeneralDAOImpl<Subcategory> implements SubcategoryDAO {
+
+    public SubcategoryDAOImpl() {
+        setClazz(Subcategory.class);
+    }
+
 }

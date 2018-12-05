@@ -5,7 +5,6 @@ import com.lesson2.OrderService;
 import com.lesson2.homework2_1.model.Route;
 import com.lesson2.homework2_1.model.Service;
 import com.lesson2.homework2_1.model.Step;
-import com.lesson7.homework7_1.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -18,7 +17,6 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -31,7 +29,7 @@ import java.util.*;
 @Configuration
 @ComponentScan("com")
 @EnableTransactionManagement
-@EnableWebMvc
+//@EnableWebMvc
 public class AppConfig implements WebMvcConfigurer {
 
     @Autowired
@@ -150,8 +148,5 @@ public class AppConfig implements WebMvcConfigurer {
         registry.viewResolver(resolver);
     }
 
-    @Bean
-    public Category category(){
-        return new Category();
-    }
+
 }

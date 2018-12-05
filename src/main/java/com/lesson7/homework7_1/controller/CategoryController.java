@@ -24,7 +24,7 @@ public class CategoryController {
     public @ResponseBody
     Category save(@RequestBody Category category){
         try {
-            return category;  //categoryService.save(category);
+            return categoryService.save(category);
         }catch (Exception e){
             e.printStackTrace();
             return null;
