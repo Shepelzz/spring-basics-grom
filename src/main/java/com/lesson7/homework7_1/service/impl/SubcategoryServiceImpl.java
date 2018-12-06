@@ -6,6 +6,8 @@ import com.lesson7.homework7_1.service.SubcategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class SubcategoryServiceImpl implements SubcategoryService {
 
@@ -17,11 +19,13 @@ public class SubcategoryServiceImpl implements SubcategoryService {
     }
 
     @Override
+    @Transactional
     public Subcategory save(Subcategory subcategory) {
         return subcategoryDAO.save(subcategory);
     }
 
     @Override
+    @Transactional
     public Subcategory update(Subcategory subcategory) {
         return subcategoryDAO.update(subcategory);
     }

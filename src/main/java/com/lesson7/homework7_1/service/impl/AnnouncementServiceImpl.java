@@ -8,6 +8,8 @@ import com.lesson7.homework7_1.service.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class AnnouncementServiceImpl implements AnnouncementService {
     private AnnouncementDAO announcementDAO;
@@ -20,6 +22,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     }
 
     @Override
+    @Transactional
     public Announcement save(Announcement announcement) throws BadRequestException {
         userSession.checkAuthorization();
         validation(announcement);
@@ -27,6 +30,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     }
 
     @Override
+    @Transactional
     public Announcement update(Announcement announcement) throws BadRequestException {
         validation(announcement);
         userSession.checkAuthorization();
