@@ -14,7 +14,7 @@ public abstract class GeneralDAOImpl<T extends GeneralModel> implements GeneralD
     private Class<T> clazz;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 
     final void setClazz( Class<T> clazzToSet ){
         this.clazz = clazzToSet;

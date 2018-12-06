@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface AnnouncementDAO extends GeneralDAO<Announcement> {
 
-    List<Announcement> getTopAnnouncements(Filter filter);
+    List<Announcement> getAnnouncementsByFilter(Filter filter);
+    List<Announcement> getTopAnnouncements();
 
 
 }

@@ -1,11 +1,17 @@
 package com.lesson7.homework7_1.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lesson7.homework7_1.dao.SubcategoryDAO;
 import com.lesson7.homework7_1.model.Subcategory;
 import com.lesson7.homework7_1.service.SubcategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.io.InputStream;
 
 @Controller
 @RequestMapping(value = "/subcategory")
@@ -21,10 +27,10 @@ public class SubcategoryController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/save")
-    public //@ResponseBody
-    Subcategory save(Subcategory subcategory){
+    public @ResponseBody
+    Subcategory save(InputStream dataStream){
         try {
-            return subcategoryService.save(subcategory);
+            return subcategoryService.save(new ObjectMapper().readValue(dataStream, Subcategory.class));
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -32,10 +38,10 @@ public class SubcategoryController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/update")
-    public //@ResponseBody
-    Subcategory update(Subcategory subcategory){
+    public @ResponseBody
+    Subcategory update(InputStream dataStream){
         try {
-            return subcategoryService.update(subcategory);
+            return subcategoryService.update(new ObjectMapper().readValue(dataStream, Subcategory.class));
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -43,8 +49,8 @@ public class SubcategoryController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete")
-    public //@ResponseBody
-    String delete(Long id){
+    public @ResponseBody
+    String delete(@RequestParam("id") Long id){
         try {
             categoryDAO.delete(id);
             return "flight with id: "+id+" was deleted";
@@ -54,8 +60,8 @@ public class SubcategoryController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/get-by-id")
-    public //@ResponseBody
-    Subcategory findById(Long id){
+    public @ResponseBody
+    Subcategory findById(@RequestParam("id") Long id){
         try {
             return categoryDAO.findById(id);
         }catch (Exception e){
