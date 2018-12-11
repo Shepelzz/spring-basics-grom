@@ -21,18 +21,20 @@ public class AnnouncementController {
 
     private AnnouncementService announcementService;
     private AnnouncementDAO announcementDAO;
+    private ObjectMapper objectMapper;
 
     @Autowired
-    public AnnouncementController(AnnouncementService announcementService, AnnouncementDAO announcementDAO) {
+    public AnnouncementController(AnnouncementService announcementService, AnnouncementDAO announcementDAO, ObjectMapper objectMapper) {
         this.announcementService = announcementService;
         this.announcementDAO = announcementDAO;
+        this.objectMapper = objectMapper;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/save")
     public @ResponseBody
     Announcement save(InputStream dataStream){
         try {
-            return announcementService.save(new ObjectMapper().readValue(dataStream, Announcement.class));
+            return announcementService.save(objectMapper.readValue(dataStream, Announcement.class));
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -43,7 +45,7 @@ public class AnnouncementController {
     public @ResponseBody
     Announcement update(InputStream dataStream){
         try {
-            return announcementService.update(new ObjectMapper().readValue(dataStream, Announcement.class));
+            return announcementService.update(objectMapper.readValue(dataStream, Announcement.class));
         }catch (Exception e){
             e.printStackTrace();
             return null;

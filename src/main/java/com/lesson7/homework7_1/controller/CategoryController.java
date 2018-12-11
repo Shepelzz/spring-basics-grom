@@ -19,18 +19,20 @@ public class CategoryController {
 
     private CategoryService categoryService;
     private CategoryDAO categoryDAO;
+    private ObjectMapper objectMapper;
 
     @Autowired
-    public CategoryController(CategoryService categoryService, CategoryDAO categoryDAO) {
+    public CategoryController(CategoryService categoryService, CategoryDAO categoryDAO, ObjectMapper objectMapper) {
         this.categoryService = categoryService;
         this.categoryDAO = categoryDAO;
+        this.objectMapper = objectMapper;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/save", produces = "application/json")
     public @ResponseBody
     Category save(InputStream dataStream){
         try {
-            return categoryService.save(new ObjectMapper().readValue(dataStream, Category.class));
+            return categoryService.save(objectMapper.readValue(dataStream, Category.class));
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -41,7 +43,7 @@ public class CategoryController {
     public @ResponseBody
     Category update(InputStream dataStream){
         try {
-            return categoryService.update(new ObjectMapper().readValue(dataStream, Category.class));
+            return categoryService.update(objectMapper.readValue(dataStream, Category.class));
         }catch (Exception e){
             e.printStackTrace();
             return null;

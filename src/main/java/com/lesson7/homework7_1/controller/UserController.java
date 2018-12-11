@@ -18,18 +18,20 @@ import java.io.InputStream;
 public class UserController {
     private UserService userService;
     private UserDAO userDAO;
+    private ObjectMapper objectMapper;
 
     @Autowired
-    public UserController(UserService userService, UserDAO userDAO) {
+    public UserController(UserService userService, UserDAO userDAO, ObjectMapper objectMapper) {
         this.userService = userService;
         this.userDAO = userDAO;
+        this.objectMapper = objectMapper;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/save")
     public @ResponseBody
     User save(InputStream dataStream){
         try {
-            return userService.save(new ObjectMapper().readValue(dataStream, User.class));
+            return userService.save(objectMapper.readValue(dataStream, User.class));
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -40,7 +42,7 @@ public class UserController {
     public @ResponseBody
     User update(InputStream dataStream){
         try {
-            return userService.update(new ObjectMapper().readValue(dataStream, User.class));
+            return userService.update(objectMapper.readValue(dataStream, User.class));
         }catch (Exception e){
             e.printStackTrace();
             return null;

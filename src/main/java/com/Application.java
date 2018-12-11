@@ -1,6 +1,8 @@
 package com;
 
 import com.lesson7.homework7_1.controller.*;
+import com.lesson7.homework7_1.model.Announcement;
+import com.lesson7.homework7_1.model.Filter;
 import com.lesson7.homework7_1.security.UserSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -59,13 +61,13 @@ public class Application {
     public static void main(String[] args) throws Exception{
         SpringApplication.run(Application.class, args);
 
-//        Filter filter = new Filter();
-//        filter.setSearchWord("pool");
-//        filter.setCategory(sCategoryController.findById(1L));
+        Filter filter = new Filter();
+        filter.setSearchWord("pool");
+        filter.setCategory(sCategoryController.findById(1L));
 //
-//        for(Announcement an : sMainController.getTopAnnouncements()){
-//            System.out.println(an.toString());
-//        }
+        for(Announcement an : sAnnouncementController.getAnnouncementsByFilter(filter)){
+            System.out.println(an.toString());
+        }
 
 //        sMainController.login("testuser", "1111");
 //
@@ -83,6 +85,8 @@ public class Application {
 //        a.setActiveTo(makeDate("2019-01-01"));
 //
 //        System.out.println(sAnnouncementController.save(a));
+
+
 
     }
 

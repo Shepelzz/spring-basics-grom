@@ -13,10 +13,12 @@ public class Announcement extends GeneralModel {
     private String description;
     private Integer price;
     private String currency;
+    private Category category;
     private Subcategory subcategory;
     private String city;
     private String phone;
     private User user;
+    private Estate estate;  //TODO
     private Date activeFrom;
     private Date activeTo;
     private Date createDate;
@@ -70,8 +72,16 @@ public class Announcement extends GeneralModel {
         this.currency = currency;
     }
 
-    @ManyToOne
-    @JoinColumn(name="SUBCATEGORY_ID", nullable = false)
+    @Enumerated(EnumType.STRING)
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    @Enumerated(EnumType.STRING)
     public Subcategory getSubcategory() {
         return subcategory;
     }
@@ -145,7 +155,8 @@ public class Announcement extends GeneralModel {
                 Objects.equals(description, that.description) &&
                 Objects.equals(price, that.price) &&
                 Objects.equals(currency, that.currency) &&
-                Objects.equals(subcategory, that.subcategory) &&
+                category == that.category &&
+                subcategory == that.subcategory &&
                 Objects.equals(city, that.city) &&
                 Objects.equals(phone, that.phone) &&
                 Objects.equals(user, that.user) &&
@@ -157,7 +168,7 @@ public class Announcement extends GeneralModel {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, title, description, price, currency, subcategory, city, phone, user, activeFrom, activeTo, createDate);
+        return Objects.hash(id, title, description, price, currency, category, subcategory, city, phone, user, activeFrom, activeTo, createDate);
     }
 
     @Override
@@ -168,7 +179,8 @@ public class Announcement extends GeneralModel {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", currency='" + currency + '\'' +
-                ", subcategory=" + subcategory.getId() +
+                ", category=" + category.toString() +
+                ", subcategory=" + subcategory.toString() +
                 ", city='" + city + '\'' +
                 ", phone='" + phone + '\'' +
                 ", user=" + user.getId() +
