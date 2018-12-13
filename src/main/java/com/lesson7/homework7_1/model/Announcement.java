@@ -18,7 +18,7 @@ public class Announcement extends GeneralModel {
     private String city;
     private String phone;
     private User user;
-    private Estate estate;  //TODO
+    private Estate estate;
     private Date activeFrom;
     private Date activeTo;
     private Date createDate;
@@ -118,6 +118,16 @@ public class Announcement extends GeneralModel {
         this.user = user;
     }
 
+    @OneToOne
+    @JoinColumn(name="ESTATE_ID", nullable = false)
+    public Estate getEstate() {
+        return estate;
+    }
+
+    public void setEstate(Estate estate) {
+        this.estate = estate;
+    }
+
     @Column(name = "ACTIVE_FROM")
     public Date getActiveFrom() {
         return activeFrom;
@@ -160,6 +170,7 @@ public class Announcement extends GeneralModel {
                 Objects.equals(city, that.city) &&
                 Objects.equals(phone, that.phone) &&
                 Objects.equals(user, that.user) &&
+                Objects.equals(estate, that.estate) &&
                 Objects.equals(activeFrom, that.activeFrom) &&
                 Objects.equals(activeTo, that.activeTo) &&
                 Objects.equals(createDate, that.createDate);
@@ -168,7 +179,7 @@ public class Announcement extends GeneralModel {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, title, description, price, currency, category, subcategory, city, phone, user, activeFrom, activeTo, createDate);
+        return Objects.hash(id, title, description, price, currency, category, subcategory, city, phone, user, estate, activeFrom, activeTo, createDate);
     }
 
     @Override

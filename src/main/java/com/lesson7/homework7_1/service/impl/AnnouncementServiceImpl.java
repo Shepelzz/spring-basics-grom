@@ -3,6 +3,7 @@ package com.lesson7.homework7_1.service.impl;
 import com.lesson7.homework7_1.dao.AnnouncementDAO;
 import com.lesson7.homework7_1.exception.BadRequestException;
 import com.lesson7.homework7_1.model.Announcement;
+import com.lesson7.homework7_1.model.Subcategory;
 import com.lesson7.homework7_1.security.UserSession;
 import com.lesson7.homework7_1.service.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,12 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     }
 
     private void validation(Announcement announcement) throws BadRequestException{
+
+        if(announcement.getCategory()==null)
+            throw new BadRequestException("category can not be empty");
+        if(!Subcategory.getByCategory(announcement.getCategory()).contains(announcement.getSubcategory()))
+            throw new BadRequestException("wrong subcategory");
+
         if(announcement.getTitle().equals("") || announcement.getCity().equals("") || announcement.getCurrency().equals("") || announcement.getDescription().equals(""))
             throw new BadRequestException("fields can not be empty");
         if(announcement.getDescription().length() > 200)

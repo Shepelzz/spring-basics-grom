@@ -29,9 +29,9 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/save")
     public @ResponseBody
-    User save(InputStream dataStream){
+    User save(User user/*InputStream dataStream*/){
         try {
-            return userService.save(objectMapper.readValue(dataStream, User.class));
+            return userService.save(user/*objectMapper.readValue(dataStream, User.class)*/);
         }catch (Exception e){
             e.printStackTrace();
             return null;

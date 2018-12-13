@@ -1,9 +1,9 @@
 package com.lesson7.homework7_1.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lesson7.homework7_1.dao.SubcategoryDAO;
-import com.lesson7.homework7_1.model.Subcategory;
-import com.lesson7.homework7_1.service.SubcategoryService;
+import com.lesson7.homework7_1.dao.EstateDAO;
+import com.lesson7.homework7_1.model.Estate;
+import com.lesson7.homework7_1.service.EstateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,23 +14,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.io.InputStream;
 
 @Controller
-@RequestMapping(value = "/subcategory")
-public class SubcategoryController {
+@RequestMapping(value = "/estate")
+public class EstateController {
 
-    private SubcategoryService subcategoryService;
-    private SubcategoryDAO categoryDAO;
+    private EstateService estateService;
+    private EstateDAO estateDAO;
+    private ObjectMapper objectMapper;
 
     @Autowired
-    public SubcategoryController(SubcategoryService subcategoryService, SubcategoryDAO categoryDAO) {
-        this.subcategoryService = subcategoryService;
-        this.categoryDAO = categoryDAO;
+    public EstateController(EstateService estateService, EstateDAO estateDAO, ObjectMapper objectMapper) {
+        this.estateService = estateService;
+        this.estateDAO = estateDAO;
+        this.objectMapper = objectMapper;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/save")
     public @ResponseBody
-    Subcategory save(InputStream dataStream){
+    Estate save(Estate estate/*InputStream dataStream*/){
         try {
-            return subcategoryService.save(new ObjectMapper().readValue(dataStream, Subcategory.class));
+            return estateService.save(estate/*objectMapper.readValue(dataStream, User.class)*/);
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -39,9 +41,9 @@ public class SubcategoryController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/update")
     public @ResponseBody
-    Subcategory update(InputStream dataStream){
+    Estate update(InputStream dataStream){
         try {
-            return subcategoryService.update(new ObjectMapper().readValue(dataStream, Subcategory.class));
+            return estateService.update(objectMapper.readValue(dataStream, Estate.class));
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -52,7 +54,7 @@ public class SubcategoryController {
     public @ResponseBody
     String delete(@RequestParam("id") Long id){
         try {
-            categoryDAO.delete(id);
+            estateDAO.delete(id);
             return "flight with id: "+id+" was deleted";
         }catch (Exception e){
             return e.getMessage();
@@ -61,12 +63,13 @@ public class SubcategoryController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/get-by-id")
     public @ResponseBody
-    Subcategory findById(@RequestParam("id") Long id){
+    Estate findById(@RequestParam("id") Long id){
         try {
-            return categoryDAO.findById(id);
+            return estateDAO.findById(id);
         }catch (Exception e){
             e.printStackTrace();
             return null;
         }
     }
+
 }

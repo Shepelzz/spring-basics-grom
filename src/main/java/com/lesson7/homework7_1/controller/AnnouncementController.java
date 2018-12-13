@@ -32,9 +32,9 @@ public class AnnouncementController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/save")
     public @ResponseBody
-    Announcement save(InputStream dataStream){
+    Announcement save(Announcement announcement/*InputStream dataStream*/){
         try {
-            return announcementService.save(objectMapper.readValue(dataStream, Announcement.class));
+            return announcementService.save(announcement/*objectMapper.readValue(dataStream, Announcement.class)*/);
         }catch (Exception e){
             e.printStackTrace();
             return null;
