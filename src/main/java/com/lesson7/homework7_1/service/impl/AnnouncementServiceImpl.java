@@ -39,7 +39,6 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     }
 
     private void validation(Announcement announcement) throws BadRequestException{
-
         if(announcement.getCategory()==null)
             throw new BadRequestException("category can not be empty");
         if(!Subcategory.getByCategory(announcement.getCategory()).contains(announcement.getSubcategory()))
